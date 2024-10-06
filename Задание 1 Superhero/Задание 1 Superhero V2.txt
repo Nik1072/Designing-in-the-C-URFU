@@ -1,0 +1,40 @@
+// Вариант, если класс Superhero расширять можно
+using System;
+
+public class Superhero
+{
+    public string Name { get; private set; }
+
+    private Superhero(string name)
+    {
+        Name = name;
+    }
+
+    private static Superhero supermanField;
+    private static Superhero batmanField;
+
+    public static Superhero GetSuperman()
+    {
+        if (supermanField == null) supermanField = new Superhero("Superman");
+        return supermanField;
+    }
+
+    public static Superhero GetBatman()
+    {
+        if (batmanField == null) batmanField = new Superhero("Batman");
+        return batmanField;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Superhero superman = Superhero.GetSuperman();
+        Console.WriteLine(superman.Name);
+        Superhero batman = Superhero.GetBatman();
+        Console.WriteLine(batman.Name);
+        Superhero trySecondBatman = Superhero.GetBatman();
+        Console.WriteLine(ReferenceEquals(superman, trySecondBatman));
+    }
+}
